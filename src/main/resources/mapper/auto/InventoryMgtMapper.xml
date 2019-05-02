@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhq.dao.InventoryMgtMapper">
+  <resultMap id="BaseResultMap" type="com.fhq.model.InventoryMgt">
+
+    <id column="id_key" jdbcType="INTEGER" property="idKey" />
+    <result column="asset_no" jdbcType="VARCHAR" property="assetNo" />
+    <result column="inventory_type" jdbcType="VARCHAR" property="inventoryType" />
+    <result column="instore_time" jdbcType="TIMESTAMP" property="instoreTime" />
+    <result column="instore_quantity" jdbcType="VARCHAR" property="instoreQuantity" />
+    <result column="asset_orgn_value" jdbcType="DOUBLE" property="assetOrgnValue" />
+    <result column="asset_pur_dept" jdbcType="VARCHAR" property="assetPurDept" />
+    <result column="supplier" jdbcType="VARCHAR" property="supplier" />
+    <result column="supplier_phone" jdbcType="VARCHAR" property="supplierPhone" />
+    <result column="outstore_time" jdbcType="TIMESTAMP" property="outstoreTime" />
+    <result column="outstore_quantity" jdbcType="VARCHAR" property="outstoreQuantity" />
+    <result column="asset_duty_man" jdbcType="VARCHAR" property="assetDutyMan" />
+    <result column="handle_man" jdbcType="VARCHAR" property="handleMan" />
+    <result column="last_asset_value" jdbcType="DOUBLE" property="lastAssetValue" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+    <result column="last_opr" jdbcType="VARCHAR" property="lastOpr" />
+    <result column="job_flag" jdbcType="INTEGER" property="jobFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+
+    id_key, asset_no, inventory_type, instore_time, instore_quantity, asset_orgn_value, 
+    asset_pur_dept, supplier, supplier_phone, outstore_time, outstore_quantity, asset_duty_man,
+    handle_man, last_asset_value, last_time, last_opr, job_flag
+  </sql>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+
+    select 
+    <include refid="Base_Column_List" />
+    from inventory_mgt
+    where id_key = #{idKey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    delete from inventory_mgt
+    where id_key = #{idKey,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fhq.model.InventoryMgt">
+
+    insert into inventory_mgt (id_key, asset_no, inventory_type, 
+      instore_time, instore_quantity, asset_orgn_value, 
+      asset_pur_dept, supplier, supplier_phone, 
+      outstore_time, outstore_quantity, asset_duty_man, 
+      handle_man, last_asset_value, last_time, 
+      last_opr, job_flag)
+    values (#{idKey,jdbcType=INTEGER}, #{assetNo,jdbcType=VARCHAR}, #{inventoryType,jdbcType=VARCHAR}, 
+      #{instoreTime,jdbcType=TIMESTAMP}, #{instoreQuantity,jdbcType=VARCHAR}, #{assetOrgnValue,jdbcType=DOUBLE}, 
+      #{assetPurDept,jdbcType=VARCHAR}, #{supplier,jdbcType=VARCHAR}, #{supplierPhone,jdbcType=VARCHAR}, 
+      #{outstoreTime,jdbcType=TIMESTAMP}, #{outstoreQuantity,jdbcType=VARCHAR}, #{assetDutyMan,jdbcType=VARCHAR}, 
+      #{handleMan,jdbcType=VARCHAR}, #{lastAssetValue,jdbcType=DOUBLE}, #{lastTime,jdbcType=TIMESTAMP}, 
+      #{lastOpr,jdbcType=VARCHAR}, #{jobFlag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fhq.model.InventoryMgt">
+
+    insert into inventory_mgt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idKey != null">
+        id_key,
+      </if>
+      <if test="assetNo != null">
+        asset_no,
+      </if>
+      <if test="inventoryType != null">
+        inventory_type,
+      </if>
+      <if test="instoreTime != null">
+        instore_time,
+      </if>
+      <if test="instoreQuantity != null">
+        instore_quantity,
+      </if>
+      <if test="assetOrgnValue != null">
+        asset_orgn_value,
+      </if>
+      <if test="assetPurDept != null">
+        asset_pur_dept,
+      </if>
+      <if test="supplier != null">
+        supplier,
+      </if>
+      <if test="supplierPhone != null">
+        supplier_phone,
+      </if>
+      <if test="outstoreTime != null">
+        outstore_time,
+      </if>
+      <if test="outstoreQuantity != null">
+        outstore_quantity,
+      </if>
+      <if test="assetDutyMan != null">
+        asset_duty_man,
+      </if>
+      <if test="handleMan != null">
+        handle_man,
+      </if>
+      <if test="lastAssetValue != null">
+        last_asset_value,
+      </if>
+      <if test="lastTime != null">
+        last_time,
+      </if>
+      <if test="lastOpr != null">
+        last_opr,
+      </if>
+      <if test="jobFlag != null">
+        job_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idKey != null">
+        #{idKey,jdbcType=INTEGER},
+      </if>
+      <if test="assetNo != null">
+        #{assetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inventoryType != null">
+        #{inventoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="instoreTime != null">
+        #{instoreTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="instoreQuantity != null">
+        #{instoreQuantity,jdbcType=VARCHAR},
+      </if>
+      <if test="assetOrgnValue != null">
+        #{assetOrgnValue,jdbcType=DOUBLE},
+      </if>
+      <if test="assetPurDept != null">
+        #{assetPurDept,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null">
+        #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierPhone != null">
+        #{supplierPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="outstoreTime != null">
+        #{outstoreTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outstoreQuantity != null">
+        #{outstoreQuantity,jdbcType=VARCHAR},
+      </if>
+      <if test="assetDutyMan != null">
+        #{assetDutyMan,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMan != null">
+        #{handleMan,jdbcType=VARCHAR},
+      </if>
+      <if test="lastAssetValue != null">
+        #{lastAssetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOpr != null">
+        #{lastOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="jobFlag != null">
+        #{jobFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fhq.model.InventoryMgt">
+
+    update inventory_mgt
+    <set>
+      <if test="assetNo != null">
+        asset_no = #{assetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inventoryType != null">
+        inventory_type = #{inventoryType,jdbcType=VARCHAR},
+      </if>
+      <if test="instoreTime != null">
+        instore_time = #{instoreTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="instoreQuantity != null">
+        instore_quantity = #{instoreQuantity,jdbcType=VARCHAR},
+      </if>
+      <if test="assetOrgnValue != null">
+        asset_orgn_value = #{assetOrgnValue,jdbcType=DOUBLE},
+      </if>
+      <if test="assetPurDept != null">
+        asset_pur_dept = #{assetPurDept,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null">
+        supplier = #{supplier,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierPhone != null">
+        supplier_phone = #{supplierPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="outstoreTime != null">
+        outstore_time = #{outstoreTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outstoreQuantity != null">
+        outstore_quantity = #{outstoreQuantity,jdbcType=VARCHAR},
+      </if>
+      <if test="assetDutyMan != null">
+        asset_duty_man = #{assetDutyMan,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMan != null">
+        handle_man = #{handleMan,jdbcType=VARCHAR},
+      </if>
+      <if test="lastAssetValue != null">
+        last_asset_value = #{lastAssetValue,jdbcType=DOUBLE},
+      </if>
+      <if test="lastTime != null">
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastOpr != null">
+        last_opr = #{lastOpr,jdbcType=VARCHAR},
+      </if>
+      <if test="jobFlag != null">
+        job_flag = #{jobFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id_key = #{idKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fhq.model.InventoryMgt">
+
+    update inventory_mgt
+    set asset_no = #{assetNo,jdbcType=VARCHAR},
+      inventory_type = #{inventoryType,jdbcType=VARCHAR},
+      instore_time = #{instoreTime,jdbcType=TIMESTAMP},
+      instore_quantity = #{instoreQuantity,jdbcType=VARCHAR},
+      asset_orgn_value = #{assetOrgnValue,jdbcType=DOUBLE},
+      asset_pur_dept = #{assetPurDept,jdbcType=VARCHAR},
+      supplier = #{supplier,jdbcType=VARCHAR},
+      supplier_phone = #{supplierPhone,jdbcType=VARCHAR},
+      outstore_time = #{outstoreTime,jdbcType=TIMESTAMP},
+      outstore_quantity = #{outstoreQuantity,jdbcType=VARCHAR},
+      asset_duty_man = #{assetDutyMan,jdbcType=VARCHAR},
+      handle_man = #{handleMan,jdbcType=VARCHAR},
+      last_asset_value = #{lastAssetValue,jdbcType=DOUBLE},
+      last_time = #{lastTime,jdbcType=TIMESTAMP},
+      last_opr = #{lastOpr,jdbcType=VARCHAR},
+      job_flag = #{jobFlag,jdbcType=INTEGER}
+    where id_key = #{idKey,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhq.dao.AssetInfoMapper">
+    <select id="selectByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from asset_info
+        <where>
+            1=1
+            <if test="idKey!=null">
+                and id_key ${idKey}
+            </if>
+            <if test="assetNo!=null">
+                and asset_no ${assetNo}
+            </if>
+            <if test="assetName!=null">
+                and asset_name ${assetName}
+            </if>
+            <if test="assetCtgy!=null">
+                and asset_ctgy ${assetCtgy}
+            </if>
+            <if test="assetPurDept!=null">
+                and asset_pur_dept ${assetPurDept}
+            </if>
+            <if test="assetPurDate!=null">
+                and asset_pur_date ${assetPurDate}
+            </if>
+            <if test="assetOrgnValue!=null">
+                and asset_orgn_value ${assetOrgnValue}
+            </if>
+            <if test="assetDutyMen!=null">
+                and asset_duty_men ${assetDutyMen}
+            </if>
+            <if test="lastTime!=null">
+                and last_time ${lastTime}
+            </if>
+            <if test="lastOpr!=null">
+                and last_opr ${lastOpr}
+            </if>
+            <if test="jobFlag!=null">
+                and job_flag ${jobFlag}
+            </if>
+        </where>
+    </select>
+</mapper>

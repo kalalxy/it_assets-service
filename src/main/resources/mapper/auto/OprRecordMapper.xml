@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhq.dao.OprRecordMapper">
+  <resultMap id="BaseResultMap" type="com.fhq.model.OprRecord">
+
+    <id column="id_key" jdbcType="INTEGER" property="idKey" />
+    <result column="opr" jdbcType="VARCHAR" property="opr" />
+    <result column="opr_ip" jdbcType="VARCHAR" property="oprIp" />
+    <result column="opr_time" jdbcType="TIMESTAMP" property="oprTime" />
+    <result column="record_time" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="job_flag" jdbcType="INTEGER" property="jobFlag" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.fhq.model.OprRecord">
+
+    <result column="opr_content" jdbcType="LONGVARCHAR" property="oprContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+
+    id_key, opr, opr_ip, opr_time, record_time, job_flag
+  </sql>
+  <sql id="Blob_Column_List">
+
+    opr_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from opr_record
+    where id_key = #{idKey,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    delete from opr_record
+    where id_key = #{idKey,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fhq.model.OprRecord">
+
+    insert into opr_record (id_key, opr, opr_ip, 
+      opr_time, record_time, job_flag, 
+      opr_content)
+    values (#{idKey,jdbcType=INTEGER}, #{opr,jdbcType=VARCHAR}, #{oprIp,jdbcType=VARCHAR}, 
+      #{oprTime,jdbcType=TIMESTAMP}, #{recordTime,jdbcType=TIMESTAMP}, #{jobFlag,jdbcType=INTEGER}, 
+      #{oprContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fhq.model.OprRecord">
+
+    insert into opr_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idKey != null">
+        id_key,
+      </if>
+      <if test="opr != null">
+        opr,
+      </if>
+      <if test="oprIp != null">
+        opr_ip,
+      </if>
+      <if test="oprTime != null">
+        opr_time,
+      </if>
+      <if test="recordTime != null">
+        record_time,
+      </if>
+      <if test="jobFlag != null">
+        job_flag,
+      </if>
+      <if test="oprContent != null">
+        opr_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idKey != null">
+        #{idKey,jdbcType=INTEGER},
+      </if>
+      <if test="opr != null">
+        #{opr,jdbcType=VARCHAR},
+      </if>
+      <if test="oprIp != null">
+        #{oprIp,jdbcType=VARCHAR},
+      </if>
+      <if test="oprTime != null">
+        #{oprTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordTime != null">
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobFlag != null">
+        #{jobFlag,jdbcType=INTEGER},
+      </if>
+      <if test="oprContent != null">
+        #{oprContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fhq.model.OprRecord">
+
+    update opr_record
+    <set>
+      <if test="opr != null">
+        opr = #{opr,jdbcType=VARCHAR},
+      </if>
+      <if test="oprIp != null">
+        opr_ip = #{oprIp,jdbcType=VARCHAR},
+      </if>
+      <if test="oprTime != null">
+        opr_time = #{oprTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordTime != null">
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobFlag != null">
+        job_flag = #{jobFlag,jdbcType=INTEGER},
+      </if>
+      <if test="oprContent != null">
+        opr_content = #{oprContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id_key = #{idKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fhq.model.OprRecord">
+
+    update opr_record
+    set opr = #{opr,jdbcType=VARCHAR},
+      opr_ip = #{oprIp,jdbcType=VARCHAR},
+      opr_time = #{oprTime,jdbcType=TIMESTAMP},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      job_flag = #{jobFlag,jdbcType=INTEGER},
+      opr_content = #{oprContent,jdbcType=LONGVARCHAR}
+    where id_key = #{idKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fhq.model.OprRecord">
+
+    update opr_record
+    set opr = #{opr,jdbcType=VARCHAR},
+      opr_ip = #{oprIp,jdbcType=VARCHAR},
+      opr_time = #{oprTime,jdbcType=TIMESTAMP},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      job_flag = #{jobFlag,jdbcType=INTEGER}
+    where id_key = #{idKey,jdbcType=INTEGER}
+  </update>
+</mapper>

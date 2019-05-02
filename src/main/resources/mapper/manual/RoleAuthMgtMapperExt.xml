@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhq.dao.RoleAuthMgtMapper">
+    <select id="selectByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from role_auth_mgt
+        <where>
+            1=1
+            <if test="idKey!=null">
+                and id_key ${idKey}
+            </if>
+            <if test="roleId!=null">
+                and roleId ${roleId}
+            </if>
+            <if test="role!=null">
+                and role ${role}
+            </if>
+            <if test="auth!=null">
+                and auth ${auth}
+            </if>
+            <if test="lastTime!=null">
+                and last_time ${lastTime}
+            </if>
+            <if test="lastOpr!=null">
+                and last_opr ${lastOpr}
+            </if>
+            <if test="jobFlag!=null">
+                and job_flag ${jobFlag}
+            </if>
+        </where>
+    </select>
+</mapper>

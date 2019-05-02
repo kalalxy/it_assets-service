@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhq.dao.InventoryMgtMapper">
+    <select id="selectByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from inventory_mgt
+        <where>
+            1=1
+            <if test="idKey != null">
+                and id_key ${idKey}
+            </if>
+            <if test="assetNo != null">
+                and asset_no ${assetNo}
+            </if>
+            <if test="inventoryType != null">
+                and inventory_type ${inventoryType}
+            </if>
+            <if test="instoreTime != null">
+                and instore_time #{instoreTime}
+            </if>
+            <if test="instoreQuantity != null">
+                and instore_quantity ${instoreQuantity}
+            </if>
+            <if test="assetOrgnValue != null">
+                and asset_orgn_value ${assetOrgnValue}
+            </if>
+            <if test="assetPurDept != null">
+                and asset_pur_dept ${assetPurDept}
+            </if>
+            <if test="supplier != null">
+                and supplier ${supplier}
+            </if>
+            <if test="supplierPhone != null">
+                and supplier_phone ${supplierPhone}
+            </if>
+            <if test="outstoreTime != null">
+                and outstore_time #{outstoreTime}
+            </if>
+            <if test="outstoreQuantity != null">
+                and outstore_quantity ${outstoreQuantity}
+            </if>
+            <if test="assetDutyMan != null">
+                and asset_duty_man ${assetDutyMan}
+            </if>
+            <if test="handleMan != null">
+                and handle_man ${handleMan}
+            </if>
+            <if test="lastAssetValue != null">
+                and last_asset_value ${lastAssetValue}
+            </if>
+            <if test="lastTime != null">
+                and last_time ${lastTime}
+            </if>
+            <if test="lastOpr != null">
+                and last_opr ${lastOpr}
+            </if>
+            <if test="jobFlag != null">
+                and job_flag ${jobFlag}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fhq.dao.OprRecordMapper">
+    <select id="selectByCondition" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        from opr_record
+        <where>
+            1=1
+            <if test="idKey!=null">
+                and id_key ${idKey}
+            </if>
+            <if test="opr!=null">
+                and opr ${opr}
+            </if>
+            <if test="oprIp!=null">
+                and opr_ip ${oprIp}
+            </if>
+            <if test="oprContent!=null">
+                and opr_content ${oprContent}
+            </if>
+            <if test="oprTime!=null">
+                and opr_time ${oprTime}
+            </if>
+            <if test="recordTime!=null">
+                and record_time ${recordTime}
+            </if>
+            <if test="jobFlag!=null">
+                and job_flag ${jobFlag}
+            </if>
+        </where>
+    </select>
+</mapper>
